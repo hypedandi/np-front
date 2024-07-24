@@ -2,12 +2,11 @@ pipeline {
     agent {
         label 'agent'
     }
-
+    stages{
     stage('Get Code') {
       steps {
-              checkout scm
-    // One or more steps need to be included within the steps block.
-            }   
-                      }   
+        checkout scm
+        }   
+     }   
    }
-
+}
