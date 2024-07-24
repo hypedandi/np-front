@@ -5,9 +5,9 @@ pipeline {
 
     stage('Get Code') {
       steps {
-          checkout scm
+              checkout scm
     // One or more steps need to be included within the steps block.
-      }
-    }   
+            }   
+                      }   
    }
-}
+
