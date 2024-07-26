@@ -33,6 +33,26 @@ pipeline {
     
     }
 
+        stage('Build application image') {
+                    steps {
+                        script {
+                          // Prepare basic image for application
+                          dockerTag = "${env.BUILD_ID}.${env.GIT_COMMIT.take(7)}"
+                          applicationImage = docker.build("piechnikdaniel/frontend:$dockerTag",".")
+                        }
+                    }
+                }
+                stage ('Pushing image to docker registry') {
+                    steps {
+                        script {
+                            docker.withRegistry("", "dockerhub") {
+                                applicationImage.push()
+                                applicationImage.push('latest')
+                            }
+                        }
+                    }
+        		}
+    
     post {
         always {
           junit 'test-results/*.xml'
