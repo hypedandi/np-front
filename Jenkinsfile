@@ -31,8 +31,7 @@ pipeline {
             }
         } 
     
-    }
-
+ 
         stage('Build application image') {
                     steps {
                         script {
@@ -52,7 +51,8 @@ pipeline {
                         }
                     }
         		}
-    
+       }
+
     post {
         always {
           junit 'test-results/*.xml'
